@@ -22,6 +22,17 @@ except (ImportError, RuntimeError, OSError):
     SDPA_AVAILABLE = False
 
 
+import matplotlib.pyplot as plt
+def visualize_mel(mel, ax=None):
+    if ax is None:
+        _, ax = plt.subplots()
+    ax.imshow(mel, aspect="auto", origin="lower", interpolation="none")
+    ax.set_title("Mel spectrogram")
+    ax.set_xlabel("Time")
+    ax.set_ylabel("Mel bins")
+    plt.show()
+
+
 @dataclass
 class ModelDimensions:
     n_mels: int
@@ -293,6 +304,8 @@ class Whisper(nn.Module):
     def forward(
         self, mel: torch.Tensor, tokens: torch.Tensor
     ) -> Dict[str, torch.Tensor]:
+        visualize_mel(mel[0].cpu().numpy())
+        print(tokens)
         return self.decoder(tokens, self.encoder(mel))
 
     @property

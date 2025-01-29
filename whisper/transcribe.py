@@ -1,4 +1,6 @@
+import uuid
 import argparse
+import math
 import os
 import traceback
 import warnings
@@ -34,6 +36,84 @@ from .utils import (
 if TYPE_CHECKING:
     from .model import Whisper
 
+import matplotlib.pyplot as plt
+
+def visualize_decoder_result(result: DecodingResult):
+    """Visualize the audio features from a decoding result with enhanced analysis."""
+    f = result.audio_features
+    if f is not None:
+        # Convert to numpy for analysis
+        norms = f.norm(dim=-1).cpu().numpy()
+
+        # Calculate threshold and identify regions
+        threshold = np.percentile(norms, 1)
+        mask = norms > threshold
+
+        # Print statistics
+        print(f"Feature Statistics:")
+        print(f"- Mean L2 norm: {norms.mean():.4f}")
+        print(f"- Max L2 norm: {norms.max():.4f}")
+        print(f"- Padding threshold: {threshold:.4f}")
+
+        # Identify contiguous regions
+        active_regions = find_active_regions(f, threshold)
+        print(f"\nDetected {len(active_regions)} active regions:")
+        for start, end in active_regions:
+            duration = (end - start) * 0.02  # Each frame is 20ms
+            print(f"- Region {start} to {end} (duration: {duration:.2f}s)")
+
+        # Create the visualization
+        plt.figure(figsize=(12, 6))
+        plt.plot(norms, label='L2 Norm', alpha=0.7)
+        plt.axhline(y=threshold, color='r', linestyle='--', label='Padding Threshold')
+
+        # Highlight active regions
+        for start, end in active_regions:
+            plt.axvspan(start, end, color='green', alpha=0.2)
+
+        plt.title("Audio Features Analysis")
+        plt.xlabel("Time Steps")
+        plt.ylabel("L2 Norm")
+        plt.legend()
+        plt.grid(True, alpha=0.3)
+        plt.savefig('test_figs/' +  str(uuid.uuid4()) + '.png')
+        plt.show()
+
+
+def detect_padding_threshold(audio_features: torch.Tensor, percentile: float = 1.0):
+    """Find a threshold for detecting padding based on L2 norms"""
+    norms = audio_features.norm(dim=-1).cpu().numpy()
+    # Padding usually has very consistent, low L2 norms
+    sorted_norms = np.sort(norms)
+    # Use lowest percentile to establish padding threshold
+    threshold = np.percentile(sorted_norms, percentile)
+    return threshold
+
+def get_padding_mask(audio_features: torch.Tensor, threshold: float):
+    """Create mask identifying likely padding regions"""
+    norms = audio_features.norm(dim=-1)
+    return norms > threshold
+
+def find_active_regions(audio_features: torch.Tensor, threshold: float,
+                       min_context: int = 10):
+    """Identify contiguous regions of active audio for caching"""
+    mask = get_padding_mask(audio_features, threshold)
+
+    # Find contiguous regions of active audio
+    active_regions = []
+    start = None
+
+    for i, is_active in enumerate(mask):
+        if is_active and start is None:
+            start = max(0, i - min_context)  # Include some context
+        elif not is_active and start is not None:
+            active_regions.append((start, i))
+            start = None
+
+    if start is not None:
+        active_regions.append((start, len(mask)))
+
+    return active_regions
 
 def transcribe(
     model: "Whisper",
@@ -124,6 +204,7 @@ def transcribe(
     A dictionary containing the resulting text ("text") and segment-level details ("segments"), and
     the spoken language ("language"), which is detected when `decode_options["language"]` is None.
     """
+    print("elijah")
     dtype = torch.float16 if decode_options.get("fp16", True) else torch.float32
     if model.device == torch.device("cpu"):
         if torch.cuda.is_available():
@@ -199,7 +280,6 @@ def transcribe(
 
             options = DecodingOptions(**kwargs, temperature=t)
             decode_result = model.decode(segment, options)
-
             needs_fallback = False
             if (
                 compression_ratio_threshold is not None
@@ -221,6 +301,13 @@ def transcribe(
             if not needs_fallback:
                 break
 
+
+        print(decode_result)
+        if isinstance(decode_result, DecodingResult):
+            visualize_decoder_result(decode_result)
+        else:
+            for result in decode_result:
+                visualize_decoder_result(result)
         return decode_result
 
     clip_idx = 0
