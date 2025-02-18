@@ -140,6 +140,10 @@ def transcribe(
     content_frames = mel.shape[-1] - N_FRAMES
     content_duration = float(content_frames * HOP_LENGTH / SAMPLE_RATE)
 
+    # grab audio file's original audio length before processing it
+    original_token_count = content_frames // (N_FRAMES // model.dims.n_audio_ctx)
+    token_count = original_token_count
+
     if decode_options.get("language", None) is None:
         if not model.is_multilingual:
             decode_options["language"] = "en"
@@ -149,7 +153,7 @@ def transcribe(
                     "Detecting language using up to the first 30 seconds. Use `--language` to specify the language"
                 )
             mel_segment = pad_or_trim(mel, N_FRAMES).to(model.device).to(dtype)
-            _, probs = model.detect_language(mel_segment)
+            _, probs = model.detect_language(mel_segment, token_count=token_count)
             decode_options["language"] = max(probs, key=probs.get)
             if verbose is not None:
                 print(
@@ -181,7 +185,7 @@ def transcribe(
     if word_timestamps and task == "translate":
         warnings.warn("Word-level timestamps on translations may not be reliable.")
 
-    def decode_with_fallback(segment: torch.Tensor) -> DecodingResult:
+    def decode_with_fallback(segment: torch.Tensor, token_count: int=original_token_count) -> DecodingResult:
         temperatures = (
             [temperature] if isinstance(temperature, (int, float)) else temperature
         )
@@ -198,7 +202,7 @@ def transcribe(
                 kwargs.pop("best_of", None)
 
             options = DecodingOptions(**kwargs, temperature=t)
-            decode_result = model.decode(segment, options)
+            decode_result = model.decode(segment, options, token_count=token_count)
 
             needs_fallback = False
             if (
