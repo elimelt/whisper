@@ -278,6 +278,11 @@ def transcribe(
                 if clip_idx < len(seek_clips):
                     seek = seek_clips[clip_idx][0]
                 continue
+            
+            if (verbose):
+                print(f"Processing chunk: Start={seek / FRAMES_PER_SECOND:.2f}s, "
+                  f"End={(seek + N_FRAMES) / FRAMES_PER_SECOND:.2f}s")
+
             time_offset = float(seek * HOP_LENGTH / SAMPLE_RATE)
             window_end_time = float((seek + N_FRAMES) * HOP_LENGTH / SAMPLE_RATE)
             segment_size = min(N_FRAMES, content_frames - seek, seek_clip_end - seek)
@@ -291,7 +296,6 @@ def transcribe(
                 decode_options["prompt"] = initial_prompt_tokens + remaining_prompt
             else:
                 decode_options["prompt"] = all_tokens[prompt_reset_since:]
-
             result: DecodingResult = decode_with_fallback(mel_segment)
             tokens = torch.tensor(result.tokens)
 

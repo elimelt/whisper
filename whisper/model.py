@@ -14,6 +14,7 @@ from torch import Tensor, nn
 from .decoding import decode as decode_function
 from .decoding import detect_language as detect_language_function
 from .transcribe import transcribe as transcribe_function
+from .audio import TOTAL_NUM_TOKENS
 
 try:
     from torch.nn.functional import scaled_dot_product_attention
@@ -179,14 +180,19 @@ class ResidualAttentionBlock(nn.Module):
         x = x + self.mlp(self.mlp_ln(x))
         return x
 
+
 class AudioEncoderTokenPruner():
     def __init__(self, n_extension: int, cut_region: Tuple[int, int]):
         self.n_extension = n_extension
         self.cut_region = cut_region
 
-    def prune(self, x: Tensor, positional_embedding: Tensor):
-        # audio_length = int((x.shape[1] + 1) // 2)
-        # [0-950, -----, 1300-1500]
+
+    def prune(self, x: Tensor, positional_embedding: Tensor, token_count: int):
+        if token_count != -1:
+            cut_region = [ token_count, TOTAL_NUM_TOKENS - 200 ]
+
+            # audio_length = int((x.shape[1] + 1) // 2)
+            # [0-950, -----, 1300-1500]
 
         cut_start, cut_end = self.cut_region
         assert 0 <= cut_start < cut_end <= x.shape[1], "Cut region out of bounds!"
@@ -221,7 +227,7 @@ class AudioEncoder(nn.Module):
         if ext_feat_flag:
             self.token_pruner = AudioEncoderTokenPruner(n_extension=200, cut_region=cut_region)
 
-    def forward(self, x: Tensor):
+    def forward(self, x: Tensor, token_count: int):
         """
         x : torch.Tensor, shape = (batch_size, n_mels, n_ctx)
             the mel spectrogram of the audio
@@ -232,8 +238,8 @@ class AudioEncoder(nn.Module):
 
         assert x.shape[1:] == self.positional_embedding.shape, "incorrect audio shape"
 
-        if self.ext_feat_flag:
-            x = self.token_pruner.prune(x, self.positional_embedding)
+        if self.ext_feat_flag and token_count < (TOTAL_NUM_TOKENS - 200 - 1) and token_count > 0:
+            x = self.token_pruner.prune(x, self.positional_embedding, token_count )
         else:
             x = (x + self.positional_embedding).to(x.dtype)
 

@@ -14,10 +14,12 @@ from .utils import compression_ratio
 if TYPE_CHECKING:
     from .model import Whisper
 
+import inspect
+
 
 @torch.no_grad()
 def detect_language(
-    model: "Whisper", mel: Tensor, tokenizer: Tokenizer = None
+    model: "Whisper", mel: Tensor, tokenizer: Tokenizer = None, token_count: int = -1
 ) -> Tuple[Tensor, List[dict]]:
     """
     Detect the spoken language in the audio, and return them as list of strings, along with the ids
@@ -31,6 +33,7 @@ def detect_language(
     language_probs : List[Dict[str, float]], length = n_audio
         list of dictionaries containing the probability distribution over all languages.
     """
+
     if tokenizer is None:
         tokenizer = get_tokenizer(
             model.is_multilingual, num_languages=model.num_languages
@@ -49,7 +52,8 @@ def detect_language(
 
     # skip encoder forward pass if already-encoded audio features were given
     if mel.shape[-2:] != (model.dims.n_audio_ctx, model.dims.n_audio_state):
-        mel = model.encoder(mel)
+
+        mel = model.encoder(mel, token_count=token_count)
 
     # forward pass using a single token, startoftranscript
     n_audio = mel.shape[0]
@@ -112,6 +116,7 @@ class DecodingOptions:
 
     # implementation details
     fp16: bool = True  # use fp16 for most of the calculation
+    
 
 
 @dataclass(frozen=True)
@@ -641,7 +646,7 @@ class DecodingTask:
 
         return tuple(sorted(set(suppress_tokens)))
 
-    def _get_audio_features(self, mel: Tensor):
+    def _get_audio_features(self, mel: Tensor, token_count: int = -1):
         if self.options.fp16:
             mel = mel.half()
 
@@ -652,7 +657,7 @@ class DecodingTask:
             # encoded audio features are given; skip audio encoding
             audio_features = mel
         else:
-            audio_features = self.model.encoder(mel)
+            audio_features = self.model.encoder(mel, token_count=token_count)
 
         if audio_features.dtype != (
             torch.float16 if self.options.fp16 else torch.float32
@@ -710,12 +715,12 @@ class DecodingTask:
         return tokens, sum_logprobs, no_speech_probs
 
     @torch.no_grad()
-    def run(self, mel: Tensor) -> List[DecodingResult]:
+    def run(self, mel: Tensor, token_count: int) -> List[DecodingResult]:
         self.decoder.reset()
         tokenizer: Tokenizer = self.tokenizer
         n_audio: int = mel.shape[0]
 
-        audio_features: Tensor = self._get_audio_features(mel)  # encoder forward pass
+        audio_features: Tensor = self._get_audio_features(mel, token_count=token_count)  # encoder forward pass
         tokens: Tensor = torch.tensor([self.initial_tokens]).repeat(n_audio, 1)
 
         # detect language if requested, overwriting the language token
@@ -794,6 +799,7 @@ def decode(
     model: "Whisper",
     mel: Tensor,
     options: DecodingOptions = DecodingOptions(),
+    token_count: int = -1,
     **kwargs,
 ) -> Union[DecodingResult, List[DecodingResult]]:
     """
@@ -809,6 +815,8 @@ def decode(
 
     options: DecodingOptions
         A dataclass that contains all necessary options for decoding 30-second segments
+    
+    token_count: number of tokens in original audio file before padding was introduced
 
     Returns
     -------
@@ -817,10 +825,8 @@ def decode(
     """
     if single := mel.ndim == 2:
         mel = mel.unsqueeze(0)
-
     if kwargs:
         options = replace(options, **kwargs)
-
-    result = DecodingTask(model, options).run(mel)
+    result = DecodingTask(model, options).run(mel, token_count=token_count)
 
     return result[0] if single else result

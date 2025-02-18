@@ -2,6 +2,7 @@ import timeit
 import whisper
 from typing import Tuple
 import matplotlib.pyplot as plt
+import subprocess
 
 def load_model(model_name: str = "tiny.en", ff: bool = False, cut_region=None) -> whisper.Whisper:
     return whisper.load_model(model_name, ext_feature_flag=ff, cut_region=cut_region)
@@ -9,7 +10,8 @@ def load_model(model_name: str = "tiny.en", ff: bool = False, cut_region=None) -
 
 def transcribe(model: whisper.Whisper, audio_path: str) -> Tuple[str, float]:
     start_time = timeit.default_timer()
-    transcription = model.transcribe(audio_path).get("text", "")
+    transcription = model.transcribe(audio_path)
+    transcription = transcription.get("text", "")
     elapsed_time = timeit.default_timer() - start_time
     return transcription, elapsed_time
 
@@ -40,3 +42,12 @@ def calculate_wer(hypothesis: str, reference: str) -> float:
                 )
 
     return dp[len(ref_words)][len(hyp_words)] / len(ref_words)
+
+# grab audio length of file ( based on specified path ) in ms
+def get_audio_len( file_path ):
+    command = [
+        "ffprobe", "-v", "error", "-show_entries", "format=duration",
+        "-of", "default=noprint_wrappers=1:nokey=1", file_path
+    ]
+    result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    return float(result.stdout.strip()) * 1000
