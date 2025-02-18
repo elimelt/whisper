@@ -171,7 +171,7 @@ class ResidualAttentionBlock(nn.Module):
         kv_cache: Optional[dict] = None,
     ):
         x = x + self.attn(self.attn_ln(x), mask=mask, kv_cache=kv_cache)[0]
-        
+
         if self.cross_attn:
             cross_out, cross_attn_weights = self.cross_attn(self.cross_attn_ln(x), xa, kv_cache=kv_cache)
             x = x + cross_out
@@ -181,32 +181,67 @@ class ResidualAttentionBlock(nn.Module):
         return x
 
 
-class AudioEncoderTokenPruner():
-    def __init__(self, cut_region: Optional[Tuple[int, int]]=None):
+class AudioEncoderTokenPruner:
+    def __init__(
+        self,
+        cut_region: Optional[Tuple[int, int]] = None,
+        token_count_padding: int = 50,
+        min_amount_cut: int = 100,
+    ):
+        """
+        cut_region : used to manually specify the region to cut from the audio tokens. if
+            supplied, we will ignore the token_count and cut the audio tokens based on the
+            specified region.
+
+        token_count_padding : the padding to add to the token count, by default 100. This is
+            just a hyperparameter to control the amount of padding to add to add after the
+            audio ends.
+
+        min_amount_cut : the minimum amount of tokens to cut from the audio. If the amount of
+            tokens to cut is less than this value, we will not cut anything.
+        """
         self.cut_region = cut_region
+        self.token_count_padding = token_count_padding
+        self.min_amount_cut = min_amount_cut
 
     def prune(self, x: Tensor, positional_embedding: Tensor, token_count: int):
-        if token_count != -1:
-            self.cut_region = [ token_count, TOTAL_NUM_TOKENS - 200 ]
+        # we can't prune
+        if token_count == -1 and self.cut_region is None:
+            return x
+
+        # give manually specified cut_region precedence for debugging/testing
+        if token_count != -1 and self.cut_region is None:
+            token_count += self.token_count_padding
+            amount_cut = TOTAL_NUM_TOKENS - token_count - 200
+            # not worth it to cut anything
+            if amount_cut < self.min_amount_cut:
+                return x
+            self.cut_region = [token_count, TOTAL_NUM_TOKENS - 200]
 
             # audio_length = int((x.shape[1] + 1) // 2)
             # [0-950, -----, 1300-1500]
-        print('num tokens: ', token_count )
-        print('new cut region: ', self.cut_region )
+        print("num tokens: ", token_count)
+        print("new cut region: ", self.cut_region)
         cut_start, cut_end = self.cut_region
         assert 0 <= cut_start < cut_end <= x.shape[1], "Cut region out of bounds!"
 
         # Keep only the uncut regions
         x_pruned = torch.cat((x[:, :cut_start, :], x[:, cut_end:, :]), dim=1)
-        pos_emb_pruned = torch.cat((positional_embedding[:cut_start, :], positional_embedding[cut_end:, :]), dim=0)
+        pos_emb_pruned = torch.cat(
+            (positional_embedding[:cut_start, :], positional_embedding[cut_end:, :]),
+            dim=0,
+        )
 
         # Ensure dimensions match
-        assert x_pruned.shape[1] == pos_emb_pruned.shape[0], "Shape mismatch after pruning!"
+        assert (
+            x_pruned.shape[1] == pos_emb_pruned.shape[0]
+        ), "Shape mismatch after pruning!"
 
         # Add positional embeddings back
         x_pruned = (x_pruned + pos_emb_pruned).to(x.dtype)
 
         return x_pruned
+
 
 class AudioEncoder(nn.Module):
     def __init__(
