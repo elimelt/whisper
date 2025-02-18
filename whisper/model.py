@@ -182,10 +182,8 @@ class ResidualAttentionBlock(nn.Module):
 
 
 class AudioEncoderTokenPruner():
-    def __init__(self, n_extension: int, cut_region: Tuple[int, int]):
-        self.n_extension = n_extension
+    def __init__(self, cut_region: Optional[Tuple[int, int]]=None):
         self.cut_region = cut_region
-
 
     def prune(self, x: Tensor, positional_embedding: Tensor, token_count: int):
         if token_count != -1:
@@ -212,7 +210,7 @@ class AudioEncoderTokenPruner():
 
 class AudioEncoder(nn.Module):
     def __init__(
-        self, n_mels: int, n_ctx: int, n_state: int, n_head: int, n_layer: int, ext_feat_flag: bool = False, cut_region: Tuple[int, int]=None
+        self, n_mels: int, n_ctx: int, n_state: int, n_head: int, n_layer: int, ext_feat_flag: bool = False, cut_region: Optional[Tuple[int, int]]=None
     ):
         super().__init__()
         self.conv1 = Conv1d(n_mels, n_state, kernel_size=3, padding=1)
@@ -226,7 +224,7 @@ class AudioEncoder(nn.Module):
         self.ln_post = LayerNorm(n_state)
         self.ext_feat_flag = ext_feat_flag
         if ext_feat_flag:
-            self.token_pruner = AudioEncoderTokenPruner(n_extension=200, cut_region=cut_region)
+            self.token_pruner = AudioEncoderTokenPruner(cut_region=cut_region)
 
     def forward(self, x: Tensor, token_count: int):
         """
@@ -325,9 +323,6 @@ class Whisper(nn.Module):
         self.register_buffer("alignment_heads", all_heads.to_sparse(), persistent=False)
         self.ext_feat_flag = ext_feat_flag
         self.cut_region = cut_region
-
-        if self.ext_feat_flag and not self.cut_region:
-            raise ValueError("cut_region must be specified if ext_feat_flag is True")
 
     def set_alignment_heads(self, dump: bytes):
         array = np.frombuffer(
