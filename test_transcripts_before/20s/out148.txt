@@ -1,0 +1,1 @@
+ even though it turns out if you actually look at the caching numbers, you're getting great hits on cache. I mean, you have very few cache misses, lots of hits on cache, but we're still slower. Why do you suppose that is? Let me get some up. Yeah? Let's start with the functions and go back.

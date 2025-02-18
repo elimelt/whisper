@@ -1,0 +1,1 @@
+ really just skyrocketed. One megahertz, 400 megahertz, 1.8 gigahertz. And the data paths went from eight bits to 30 to 64. The memory is correspondingly grow, cost approximately the same. And that was, that's the legacy from Moore's Law and the tremendous advances in

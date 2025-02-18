@@ -1,0 +1,1 @@
+ Gee, I want to make an easy to program, and so therefore I'm willing to sacrifice some performance to make something easy to program. I'm willing to sacrifice.

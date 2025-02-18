@@ -1,0 +1,1 @@
+ for this matrix problem is the matrices are laid out in memory and row major order. That means you take, you know, you have a two-dimensional matrix, it's laid out in the linear

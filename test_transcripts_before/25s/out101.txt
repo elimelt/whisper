@@ -1,0 +1,1 @@
+ about 16 million, 17 million memory access is total. Okay, that's a lot of memory access. So what if instead of doing that, I do things in blocks, okay? So what if I wanna compute a 64 by 64 block of C rather than a row of C? So let's take a look at what happens there. So remember, by the way, this number 16

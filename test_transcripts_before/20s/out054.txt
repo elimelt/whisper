@@ -1,0 +1,1 @@
+ double precision operations and so including a fused multiply add which is actually two operations. Okay the way that they count these things. Okay it has a cache line size of 64 bytes. The iCASH is 32 kilobytes which is 8 ways set associative. We'll talk.

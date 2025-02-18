@@ -1,0 +1,1 @@
+ well. So divide and conquer turns out to be a big win here. Now the other thing that we mentioned, which was we're not using the vector hardware. All of these things have vectors.

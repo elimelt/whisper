@@ -1,0 +1,1 @@
+ OK, Cij stays the same for everything. We get for that excellent spatial locality because we're just accessing the same location. Every single time it's going to be in cache, it's always going to be there. It's going to be fast to access C. For A,

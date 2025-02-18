@@ -1,0 +1,1 @@
+ one and with parallel divide and concourse the lowest, but also now so is the last level caching. And then total number of references is small as well. So divide and concourse turns out to be a big win here. Now the other thing that we mentioned.

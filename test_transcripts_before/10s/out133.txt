@@ -1,0 +1,1 @@
+ How do we tell whether this is fast or not? What should we expect from our machine? So let's do it back at the envelope.

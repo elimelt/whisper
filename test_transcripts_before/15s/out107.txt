@@ -1,0 +1,1 @@
+ performance and use it to make a more flexible, easier to program environment. The interpreter basically reads, interprets, and performs each program statement and then updates the machine state. So it's not just, it's actually going through an

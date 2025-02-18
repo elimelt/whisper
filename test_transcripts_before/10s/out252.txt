@@ -1,0 +1,1 @@
+ of A and all of B again, so that when I'm done, we do about 16 million, 17 million memory access is total.

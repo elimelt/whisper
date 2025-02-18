@@ -1,0 +1,1 @@
+ very much like just ordinary, makes it multiply. OK? And so when you do that, you can once again look to see what's the best value for the base case, and it turns out in this case, I guess it's 64. We get down to 1.95 seconds. I didn't do the base case of one, because I tried that, and that was the one that gave us terrible performance. So.

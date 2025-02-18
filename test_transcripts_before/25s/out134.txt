@@ -1,0 +1,1 @@
+ fewer bits in your representation. We'll talk about that too. So the last thing that we're going to do is you can actually use the instructions, the vector instructions yourself rather than relying the compiler to do it. And there's a whole manual of intrinsic instructions that you can call from C.

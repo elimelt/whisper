@@ -1,0 +1,1 @@
+ calculation of how many operations there are and how fast we ought to be able to do it. We just went through and said what are all the parameters the machine. So there are two N cubed operations that need to be performed. We're not doing stress in South Carolina or anything like that. We're just doing straight tripling nested.

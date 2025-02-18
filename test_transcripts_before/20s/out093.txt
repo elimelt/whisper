@@ -1,0 +1,1 @@
+ going to fly through this because this is just showing you the kinds of considerations that you do. So, in hardware, there are each processor region writes main memory in contiguous blocks called cache lines. Previously, access cache lines are stored in a small memory called cache that sits near the processor.

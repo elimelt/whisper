@@ -1,0 +1,1 @@
+ which is, you know, how big do I make my tile size? You know, if it's S by S, what should I do at the least there? Should it be 64? Should it be 128? Should it be what number should I use there? How do we find the right value of, how do we find the right value of S, this tuning parameter? OK? Ideas are how we might find it? Yeah.

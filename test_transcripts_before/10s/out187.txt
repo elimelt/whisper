@@ -1,0 +1,1 @@
+ in contiguous blocks called cache lines. Previously, access cache lines are stored in a small memory called cache that sits near the processor. When it-

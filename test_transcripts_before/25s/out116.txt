@@ -1,0 +1,1 @@
+ I don't expect that you understand this, but we've written this using in parallel because it turns out you can do four of them in parallel. And the silk spawn here says, go and do the subroutine, which is basically a subproblem. And then while you're doing that, you're allowed to go and execute the next statement, which will do another spawn, another spawn, and finally this.

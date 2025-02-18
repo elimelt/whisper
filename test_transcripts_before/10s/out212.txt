@@ -1,0 +1,1 @@
+ 2 says optimize even more. 3 says optimize yet more. In this case it turns out that even though it would optimize more in 0 3.

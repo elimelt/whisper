@@ -1,0 +1,1 @@
+ Because they wrote it to be as fast as possible. And so this will give you an idea of what you can do to make code run fast. Okay? So when you run this code, so you can see that the start time, you know, before the triply nested loop.

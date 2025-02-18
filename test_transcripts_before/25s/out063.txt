@@ -1,0 +1,1 @@
+ is interpreted and see as compiled directly to byte to machine code. And Java is somewhere in the middle because Java is compiled to byte code which is then interpreted and then just in time compiled into machine code. So let me talk a little bit about these things. So interpreters such as in Python or virtual but slow.

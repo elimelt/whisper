@@ -1,0 +1,1 @@
+ megaflops out of our machine when we run that code. Okay? Just by dividing it out, how many floating point operations per second do we get? We take the number of operations divided by the time. Okay? The peak, as you recall, was about 836 gigaflops. Okay? And we're getting 6.25.

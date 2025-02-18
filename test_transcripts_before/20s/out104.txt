@@ -1,0 +1,1 @@
+ of things that we could do that don't even have us touching the code. What else could we do for people who've played with compilers and such? hint hint. Yeah. If you change the compiler flags, change the compiler flags, okay? So, clap.

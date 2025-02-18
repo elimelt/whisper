@@ -1,0 +1,1 @@
+ It's doing lots of code, you're like, doing Python objects like integers and the problem. Yeah, yeah. OK, good. So the big reason why Python is slow and see it so fast is that Python is interpreted. And see his compile directly to Python.

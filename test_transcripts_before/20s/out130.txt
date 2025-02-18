@@ -1,0 +1,1 @@
+ So I do much less to compute the same size footprint if I compute a block rather than computing a row. Much more efficient. And that's a scheme called tiling. And so if you do tiled matrix multiplication, what you do is you bust your matrices into, let's say, 64 by 64.

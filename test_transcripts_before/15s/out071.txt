@@ -1,0 +1,1 @@
+ precision operations, that's 64-bit pulling point operations, including a fused multiply add per core, per cycle. So that's a vector unit. So basically, each of these 18 cores can do a-

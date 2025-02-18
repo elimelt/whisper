@@ -1,0 +1,1 @@
+ of the data for the matrix. And it's got an L2 cache, which is also private to the processor. And then a shared L3 cache. And then you go out to the DRAM. You also can go to your neighboring processors and such. OK?

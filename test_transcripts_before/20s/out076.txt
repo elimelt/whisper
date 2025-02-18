@@ -1,0 +1,1 @@
+ of peak. So we're still slow, but before we go and try to optimize it further, like why is Python so slow and see so fast. Does anybody know?

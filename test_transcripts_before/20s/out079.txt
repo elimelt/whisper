@@ -1,0 +1,1 @@
+ machine code. And Java is somewhere in the middle because Java is compiled to byte code, which is then interpreted, and then just in time compiled to machine code. So let me tell you a little bit about these things. So interpreters, such as in Python or versatile,

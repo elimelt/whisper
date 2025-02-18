@@ -1,0 +1,1 @@
+ And so the impact of that was that performance was no longer free. You couldn't just speed up the hardware. Now if you wanted to use that potential, you had to do parallel program. And that's not something that anybody in the industry really had done. So today there are a lot of other things that happen in that intervening time.

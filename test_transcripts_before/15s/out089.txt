@@ -1,0 +1,1 @@
+ not. What should we expect from our machine? So let's do it back at the envelope calculation of how many operations there are and how fast we ought to be able to do it. We just went through and said what all the parameters.

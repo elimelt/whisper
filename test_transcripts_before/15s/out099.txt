@@ -1,0 +1,1 @@
+ So now it's basically 1,100 seconds, which is about 19 minutes. So we got then about, it's twice as fast as Java and about 18 times faster than Python. Okay, so here's where we stand so far.

@@ -1,0 +1,1 @@
+ So what we're doing is once we figure out what I and what J is, we're going to go through and cycle through K. And as we cycle through K, Cij stays the same for everything. We get for that excellent spatial locality, because we're just accessing the same location every single time it's going to be

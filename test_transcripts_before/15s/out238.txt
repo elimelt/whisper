@@ -1,0 +1,1 @@
+ In this course, we're going to focus on multi-core computing. We are not, in particular, going to be doing GPUs or file systems or network performance. In the real world, those are hugely important. We found, however,

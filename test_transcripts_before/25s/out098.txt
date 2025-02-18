@@ -1,0 +1,1 @@
+ which is good, but we're basically doing the processors doing 4,096 writes. Now to compute that row, okay, I need to access 4,096 reads from A, okay, and I need all of B, okay, because I go each column of B.

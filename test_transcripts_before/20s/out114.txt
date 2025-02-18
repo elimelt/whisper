@@ -1,0 +1,1 @@
+ for the inner loop. So the question is, which parallel version works best? So we can do parallel. The i loop, we can parallel the j loop, and we can do i and j together. You can't do k just with a parallel loop and expect to get the right thing. So, and that's this thing. So.

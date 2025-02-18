@@ -1,0 +1,1 @@
+ What happens is we go through an linear order and we get good spatial locality but for B it's going through columns and those points are distributed far away in memory. So the processor is going to be bringing in 64

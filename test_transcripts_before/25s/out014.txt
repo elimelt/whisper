@@ -1,0 +1,1 @@
+ What's a typical clock rate today? About what? Four gigahertz, three gigahertz, two gigahertz, somewhere up there. Yeah, somewhere in that range. And here they were operating with kilohertz. So many programs would not fit without intense performance engineering. And one of the things also that there's a lot of for bands.

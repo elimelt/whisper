@@ -1,0 +1,1 @@
+ which was we're not using the vector hardware. All of these things have vectors that we can operate on. Okay? They have vector heart that process d-

@@ -1,0 +1,1 @@
+ of peak, so 41% of peak and get about 50,000 speed up. And it turns out that's where we quit. And the reason is because we beat Intel's professionally engineered math kernel library.

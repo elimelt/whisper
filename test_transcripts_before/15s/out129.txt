@@ -1,0 +1,1 @@
+ Let's just take a look at the access pattern for order ijk. So what we're doing is once we figure out what i and what j is, we're going to go through and cycle through k. And as we cycle through k,

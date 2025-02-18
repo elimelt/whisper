@@ -1,0 +1,1 @@
+ doing AI applications in which case you may want to do lower precision arithmetic. No, flow to float is 32. So generally people use 60 in who are doing serious.

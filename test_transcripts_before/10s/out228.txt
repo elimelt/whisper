@@ -1,0 +1,1 @@
+ for the inner loop. OK? So the question is, which parallel version works best? So we can do parallel to the i loop with.

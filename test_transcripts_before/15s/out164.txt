@@ -1,0 +1,1 @@
+ 4,096 reads from A. And I need all of B. Because I go each column of B.

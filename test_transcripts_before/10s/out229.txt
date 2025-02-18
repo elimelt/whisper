@@ -1,0 +1,1 @@
+ You can parallel the J loop and we can do I and J together. You can't do K just with a parallel loop and expect to get the right thing. So, and that's this thing. So,

@@ -1,0 +1,1 @@
+ megaflops. So we're getting about 0.0075% of peak. This is not fast. So let's do something really.

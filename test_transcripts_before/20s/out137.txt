@@ -1,0 +1,1 @@
+ this out and to understand the cause of what's going on. Well, it turns out that our chips don't have just one cache. They've got three levels of caches. There's L1 cache, okay? And there's data and instructions. So we're thinking about data here.

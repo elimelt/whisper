@@ -1,0 +1,1 @@
+ like they're not associative. So if you do A times B times C, how you parenthesis that can give you two different numbers. And so if you give a specification of a code, typically the compiler will not change the order of associativity because it says I want to get exactly the same result. But you can do it.

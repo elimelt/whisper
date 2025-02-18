@@ -1,0 +1,1 @@
+ the computing n squared dot products. So essentially, if you add up the total number of operations, it's about 2N cubed because there is essentially a multiply and an add for every pair of terms that need to be accumulated. So it's basically 2N cubed. We're going to look at it assuming for simplicity that our n is an exact power.

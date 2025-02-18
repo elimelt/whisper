@@ -1,0 +1,1 @@
+ your logic on some machines and so forth. And now it's up to the software to adapt to it. And so although we don't want to have to deal with performance.

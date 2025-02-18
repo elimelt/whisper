@@ -1,0 +1,1 @@
+ Let's code it in Java rather than Python. So we take just that loop. The code is almost the same. Triply nested loop. We run it in Java. And the running time now, it turns out is just under 3,000 seconds, which is about 46 minutes. The same code.

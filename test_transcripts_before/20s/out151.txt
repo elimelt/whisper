@@ -1,0 +1,1 @@
+ We call a base case and the base case looks very much like just ordinary, it makes it multiply. Okay? And so when you do that, you can once again look to see what's the best value for the base case and it turns out in this case I guess it's 64.

@@ -1,0 +1,1 @@
+ give it a flag called fastmath minus f fastmath, which will allow it to do that kind of reordering. If it's not important to you that it be the same as the default ordering. And when you use that, so in particular using architecture native and fastmath, we actually get about double the performance out of vectorization, just having the compiler vectorize it. OK?

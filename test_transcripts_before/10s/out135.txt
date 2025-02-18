@@ -1,0 +1,1 @@
+ the machine. So there are two N cubed operations that need to be performed. We're not doing stress in Salger or anything like that. We're just doing straight tripling nested.

@@ -1,0 +1,1 @@
+ Like why is Python so slow and see so fast? Does anybody know? Platform covers it so it has two sub-reson.

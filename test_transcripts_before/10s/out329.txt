@@ -1,0 +1,1 @@
+ architecture native and fast math, we actually get about double the performance out of vectorization, just having the compiler vectorize it. Okay?

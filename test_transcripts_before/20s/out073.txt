@@ -1,0 +1,1 @@
+ coding it in a different language. Okay. Well, let's try C. That's the language we're going to be using here. What happens when you code it in C? It's exactly the same thing. Okay. We're going to use the Clang LLVM 5.0 compiler. I believe we're using 6.0. This term is that right?

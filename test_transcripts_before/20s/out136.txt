@@ -1,0 +1,1 @@
+ And the other thing is that if you use cache grinder or a similar tool, you can figure out how many cache references there are and so forth. And you can see that in fact it's dropped quite considerably when you do blocked the tiling versus just the straight parallel loops. Okay? So once again, you can use tools to help you figure out

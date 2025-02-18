@@ -1,0 +1,1 @@
+ And the main one we're getting out of this is the AVX and trin-6. We get up to .41.

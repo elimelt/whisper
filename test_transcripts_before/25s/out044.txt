@@ -1,0 +1,1 @@
+ about some of these things. If you don't know all the terms it's okay, we're going to cover most of these terms later on. It's got a decash of the same size. It's got an L2 cache of 256 kilobytes and it's got an L3 cache or what's sometimes called an LLC last level cache of 25 megabytes. And then it's got 60 gigabytes of DRAM. So this is a honking big machine.

@@ -1,0 +1,1 @@
+ A lot of sayings that came out of that area. Donald Knuth, who's one of the Turing Award winner, absolutely fabulous computer scientist in all respects, wrote premature optimization as the root of all evil. And I invite you, by the way, to look that quote up and because it's actually taken out of context. OK, so trying to optimize stuff too early, he was worried about. OK?

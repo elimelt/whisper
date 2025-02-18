@@ -1,0 +1,1 @@
+ is interpreted and see his compiled directly to byte to machine code. And Java is somewhere in the middle because Java is compiled to byte code which is then interpreted and then just in time compiled into machine.

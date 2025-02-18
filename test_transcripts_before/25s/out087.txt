@@ -1,0 +1,1 @@
+ basically a factor of 3.25 without having to do much work at all. And now we're actually starting to approach 1% of peak performance. We've got 0.3% of peak performance. So what's causing the low performance? Why aren't we getting most of the performance out of this machine?

@@ -1,0 +1,1 @@
+ and it'll figure out which architecture is that. Okay? Now, floating point numbers, as we'll talk about, turn out to have some undesirable

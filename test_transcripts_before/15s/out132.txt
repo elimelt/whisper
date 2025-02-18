@@ -1,0 +1,1 @@
+ to operate on a particular datum. Okay, and then it's ignoring seven of the eight, seven of the eight floating point words on that, on that cash line, and going to the next one. So it's wasting an awful lot.

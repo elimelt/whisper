@@ -1,0 +1,1 @@
+ OK? And as we mentioned, we have floating point units per core, which.

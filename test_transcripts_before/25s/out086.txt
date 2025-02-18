@@ -1,0 +1,1 @@
+ have it do a profile guided optimization where you look at what the performance was and feed that back into the code and then the compiler can be smarter about how it optimizes. And there a variety of other things. So with this simple technology, we now choosing a good optimization flag in this case

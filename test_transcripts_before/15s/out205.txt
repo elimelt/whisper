@@ -1,0 +1,1 @@
+ we have, you can see that here's the data cache for L1, and with parallel divide and conquerors to the lowest, but also now so is the last level caching. And then total number of references is smallest.

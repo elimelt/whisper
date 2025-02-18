@@ -1,0 +1,1 @@
+ still bad. I just want to do the loop there. This has to do it turns out with scheduling overhead and we'll learn about scheduling overhead and how you predict that and such. So the rule of thumb here is paralyzed outer loops rather than inter loops. And so when we do parallel loops, we get an almost 18x speed up on 18 cores. Okay.

@@ -1,0 +1,1 @@
+ have to deal with performance in software if you're going to have effective software. You can see what happened also. This is a study that we did looking at software bugs in a variety of open source projects where they're mentioning the word performance. You can see that in 2004 the numbers start going up.

@@ -1,0 +1,1 @@
+ and there are different sizes. You can see they grow in size, 32 to 252 kilobytes, 256 kilobytes to 25 megabytes to main memory, which is 60 gigabytes. So what you can do is if you want to do two-level tiling, okay, you can have two tuning parameters, S and T. and now you get to do, you can't do binary search to F.

@@ -1,0 +1,1 @@
+ order of the addresses of memory by essentially taking row 1 and then after row 1, stick row 2. And after that, stick row 3 and so forth and unfolding.

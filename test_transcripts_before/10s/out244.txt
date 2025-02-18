@@ -1,0 +1,1 @@
+ vector there, that's going to basically be 4,096 writes that we're going to do. Okay, and we're going to get some spatial locality.

@@ -1,0 +1,1 @@
+ optimize one. So, multicore. So, we have nine cores per chip, and there are two of these chips that are in our test machine.

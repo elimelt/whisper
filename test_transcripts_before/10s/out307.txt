@@ -1,0 +1,1 @@
+ We're doing, if you count up how many cache misses we have, you can see that, you know, here's the data cache for L.

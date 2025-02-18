@@ -1,0 +1,1 @@
+ Anybody else have any eyes? Particular a little bit. Why Python is so slow? Yeah. You write like multiply and add. It was, I think, only instructions Python's doing. It's doing lots of code, but like, filling through Python objects like integers and the public logic. Yeah, yeah. OK, good. So the big reason why Python is slow and see it so fast is that Python.

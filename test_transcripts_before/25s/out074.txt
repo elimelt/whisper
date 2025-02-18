@@ -1,0 +1,1 @@
+ Whoa, just by switching the order. OK, what's going on there? OK, what's going on? So we're going to talk about this in more depth. So I'm going to just fly through this, because this is just showing you the kinds of considerations that you do. So in hardware, there are each process of region rights main memory in contiguous blocks called cache lines. Previously accessed cache.

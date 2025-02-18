@@ -1,0 +1,1 @@
+ The peak, as you recall, was about 836 gigaflops. And we're getting 6.25.

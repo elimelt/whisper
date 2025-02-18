@@ -1,0 +1,1 @@
+ Okay, and we'll learn about about this stuff. Okay, when we do that, we get a running time of about 93 seconds.

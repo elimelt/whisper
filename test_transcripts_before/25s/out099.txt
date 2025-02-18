@@ -1,0 +1,1 @@
+ Okay, as I'm going through to fully compute C. Do people see that? Okay, so I need to just compute one row of C, I'm going to compute, I need to access one row of A and all of B, okay, because the first element of C needs the whole first column of B. The second element of is a . . . . . . . . .

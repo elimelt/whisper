@@ -1,0 +1,1 @@
+ the cache lines effectively. This one, you're going 4,096 elements apart. It's got poor spatial locality. And that's why, and that's for this one. So then if we look at the different other ones, this one, the order IKJ, it turns out you get good spatial locality for both.

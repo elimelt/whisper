@@ -1,0 +1,1 @@
+ Let me talk a little bit about these things. So interpreters, such as in Python or versatile, but slow. It's one of these things where they said we're going to take some of our

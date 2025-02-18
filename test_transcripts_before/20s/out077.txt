@@ -1,0 +1,1 @@
+ Okay, that's kind of on the right track. Anybody else have any eyes? Partically a little bit why Python is so slow? Yeah. You write like multiply and add those aren't the only instructions.

@@ -1,0 +1,1 @@
+ Okay, this is like, you can get things to sing on this. Okay, if you look at the peak performance, it's the clock speed times two processor chips, times nine processing cores per chip, each capable of, if you can use both the multiply and the add 16.

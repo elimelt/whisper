@@ -1,0 +1,1 @@
+ I think the answer to that is that performance is the currency of computing. You use performance to buy these other properties. So you'll say something like, gee, I want to make an easy to program. And so therefore I'm willing to sacrifice some performance to make something easy to program. I'm willing to sacrifice.

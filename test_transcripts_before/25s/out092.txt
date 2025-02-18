@@ -1,0 +1,1 @@
+ If you look, wow, what a spread of running times, right? If I paralyze the I loop, it's 3.18 seconds. If I paralyze the J loop, it actually slows down, I think. Then if I do both INJ, it's still bad. I just want to do the out loop there. This has to do it turns out with scheduling overhead.

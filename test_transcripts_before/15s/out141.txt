@@ -1,0 +1,1 @@
+ So if you look at the documentation it says do not optimize. One says optimize. Two says optimize even more. Three says optimize yet more. In this case it turns out that even though it optimize more in 03.

@@ -1,0 +1,1 @@
+ So generally we will turn off hyperthreading, but the performances that you get tends to be correlated with what you get when you are hyperthread.

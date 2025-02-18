@@ -1,0 +1,1 @@
+ we're going to just compute one row of C. So we go through one row of C. That's going to take us since it's 4,096 long.

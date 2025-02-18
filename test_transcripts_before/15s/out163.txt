@@ -1,0 +1,1 @@
+ that we're going to do. Okay, and we're going to get some spatial locality there, which is good. But we're basically doing the processors doing 4,096 writes. Now to compute that row, okay, I need to access.

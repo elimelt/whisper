@@ -1,0 +1,1 @@
+ find it, unfortunately, because it's multidimensional. You kind of have to do it exhaustively. And when you do that, you end up with nine nested loops. OK? But of course, we don't really want to do it. We have three levels of caching.

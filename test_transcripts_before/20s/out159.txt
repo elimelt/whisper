@@ -1,0 +1,1 @@
+ You can, so already we've actually been taking advantage of it, but you can produce a vectorization report by asking that and it'll tell you the system will tell you what kinds of things are being vectorized, which things are being vectorized, which aren't.

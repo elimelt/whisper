@@ -1,0 +1,1 @@
+ It turns out O2 is a better setting. This is one of these cases. It doesn't happen all the time. Usually, O3 does better than O2, but in this case, O2 actually optimize better than O3, because the optimizations are just something.

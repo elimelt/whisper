@@ -1,0 +1,1 @@
+ So each vector will hold multiple words. I believe in the one, the machine we're using is term is four words. I think so. OK. And.

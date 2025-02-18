@@ -1,0 +1,1 @@
+ as well as theoretical points of view and technical points of view. So modern processors are really complicated, and the big question is how do we write software? Where?

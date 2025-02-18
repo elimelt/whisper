@@ -1,0 +1,1 @@
+ here's paralyzed outer loops rather than inter loops. And so when we do parallel loops, we get an almost 18x speed up on 18 cores. OK?

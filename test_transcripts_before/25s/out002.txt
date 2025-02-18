@@ -1,0 +1,1 @@
+ system, so if this is the wrong, if you found yourself in the wrong place, now is the time to exit. I want to start today by talking a little bit about why we do performance engineering. And then I'll do some a little bit of administration and then sort of dive into sort of a case study that will give you a good sense of s-

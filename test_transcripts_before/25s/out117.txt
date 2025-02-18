@@ -1,0 +1,1 @@
+ statement says, but don't start the next phase until you finish the first phase. And we'll learn about this stuff. When we do that, we get a running time of about 93 seconds, which is about 50 times slower than the last version. We're using cache much better. But it turns out nothing is.

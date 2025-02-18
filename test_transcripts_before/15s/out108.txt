@@ -1,0 +1,1 @@
+ Each time reading your code, figuring out what it does, and then implementing it. So there's all this overhead compared to just doing its operations. So interpreters can easily support high-level prok-

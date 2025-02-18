@@ -1,0 +1,1 @@
+ update the state of the machine and then you would fetch the next instruction. And you're going through that each time and that's done in software.

@@ -1,0 +1,1 @@
+ on the data as one chunk of vector data. You can't have this lane doing of the vector unit doing one thing and a different lane doing something else. They all have to be doing essentially the same thing, the only difference being the indexing of memory. Okay. So when you do that,

@@ -1,0 +1,1 @@
+ take just that loop, the code is almost the same. Okay, it's the triply nested loop. We run it in Java. Okay, and the running time now it turns.

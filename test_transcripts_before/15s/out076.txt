@@ -1,0 +1,1 @@
+ processing course per chip, each capable of, if you can use both the multiply and the add 16 floating point operations and that goes out to just short of a t-

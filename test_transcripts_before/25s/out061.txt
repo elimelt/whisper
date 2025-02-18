@@ -1,0 +1,1 @@
+ We're still slow, but before we go and try to optimize it further, like why is Python so slow and see so fast? Does anybody know? The final thing covers it. So it has two separate C program, and that basically causes Python, Python, Python, and the charging switch. It takes up the specific product. OK. That's kind of on the right track. Ah.

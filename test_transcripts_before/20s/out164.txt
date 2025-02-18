@@ -1,0 +1,1 @@
+ that kind of reordering, if it's not important to you that it be the same as the default ordering. And when you use that, and particularly using architecture native and fast math, we actually get about double the performance out of vectorization, just having the compiler vectorize it. OK?

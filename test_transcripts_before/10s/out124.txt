@@ -1,0 +1,1 @@
+ And that's just this classic tripling nested loop for matrix multiplication. And so when you run this, how long is this run for?

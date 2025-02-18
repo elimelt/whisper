@@ -1,0 +1,1 @@
+ free, nothing is easy in typically in performance engineering. You have to be clever. Why, what happened here? Why did this get worse even though? Turns out if you actually look at the caching numbers, you're getting great hits on cache. I mean, you have very few cache misses, lots of hits on cache, but we're still slower. Why do you suppose that is? Let me get some up.

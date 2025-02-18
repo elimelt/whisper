@@ -1,0 +1,1 @@
+ which was we're not using the vector hardware. All of these things have vectors that we can operate on. Okay? They have vector hardware that process data in what's called SIMD fashion, which means single instruction same multiple data. That means you give one instruction and it does operations on a vector. Okay? And as we mentioned, we have

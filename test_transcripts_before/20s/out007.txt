@@ -1,0 +1,1 @@
+ that you folks could probably make a pretty long list. I made a short list of all the kinds of things that are more important than performance. So then if programmers are so willing to sacrifice performance for these properties, why do we study performance?

@@ -1,0 +1,1 @@
+ So, you do minus O and then a number. And 0, if you look at the documentation it says do not optimize. One says optimize.

@@ -1,0 +1,1 @@
+ 6172. My name is Charles Lyserson and I am one of the two lecturers this term. The other is Professor Julian Shun. We're both in EECS and in C-Sale on the seventh floor of the Gates building. If you don't know it, you are in the Performance Engineering of Software

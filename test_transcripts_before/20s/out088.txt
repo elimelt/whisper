@@ -1,0 +1,1 @@
+ that we're going to talk about performance in managed languages like Python. So it's not that we're going to ignore the topic, but we will learn how to do performance engineering in a place where it's easier to do it. Okay. Now one of the things that a good compiler will

@@ -1,0 +1,1 @@
+ multiply. You do an outer level of multiplying of the blocks using the same algorithm. And then when you hit the inner to do a 64 by 64 matrix multiply, I then do another three nested loops. You end up with six nested loops. Okay? And so you're basically, you know, busting it like this. And there's a tuning parameter, of course.

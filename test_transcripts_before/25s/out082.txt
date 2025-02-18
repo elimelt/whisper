@@ -1,0 +1,1 @@
+ the valgrin suites of caches. And what it'll do is it'll tell you what the misrates are for the various pieces of code. And you'll learn how to use that tool and figure out, oh, look at that. We have a high-miss rate for some and not for others. So that may be why my code is running slowly. So when you pick the best one of those, we then got a relative speed up of a.

@@ -1,0 +1,1 @@
+ be of the clever. Why what happened here? Why did this get worse even though it turns out if you actually look at the caching numbers you're getting great hits on cache. I mean you have very few cache misses, lots of hits

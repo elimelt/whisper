@@ -1,0 +1,1 @@
+ In this case, it turns out that even though it optimized more in 03, it turns out 02 was a better setting. This is one of these cases. It doesn't happen all the time. Usually 03 does better than 02. But in this case, 02 actually optimized better than 03, because the optimizations are to some extent heuristic. And there are also other kinds of optimization.

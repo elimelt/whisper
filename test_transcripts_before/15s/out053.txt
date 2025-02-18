@@ -1,0 +1,1 @@
+ So today there are a lot of other things that happen in that intervening time. We got vector units as common parts of our machines. We got GPUs. We got steeper cache hierarchies. We have confederate.

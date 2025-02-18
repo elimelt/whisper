@@ -1,0 +1,1 @@
+ Okay, we get down to 1.95 seconds. I didn't do the base case of one because I tried that and that was the one that gave us terrible performance.

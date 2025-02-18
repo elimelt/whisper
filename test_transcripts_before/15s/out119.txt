@@ -1,0 +1,1 @@
+ version, which is where we're going to move from this point, because that's the fastest we got so far, is it turns out that you can change the order of loops in this program without affecting the correctness. Okay, so here we went, you know, for i for j for t-

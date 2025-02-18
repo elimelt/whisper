@@ -1,0 +1,1 @@
+ and figure out, oh, look at that. We have a high miss rate for some and not for others. So that may be why my code is running slowly. So when you pick the best one of those, we then got a relative speed up from about 6 1 1 half. So what other simple changes can we try? There's actually a clap.

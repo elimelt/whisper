@@ -1,0 +1,1 @@
+ To the extent that today, it's basically impossible to find a single core Chip for a laptop or a workstation or whatever everything is multi-core You can't buy just one you have to buy a parallel processor and

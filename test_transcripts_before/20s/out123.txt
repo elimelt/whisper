@@ -1,0 +1,1 @@
+ 4,096 reads from A. And I need all of B, okay? Because I go each column of B, okay, as I'm going through, to fully compute C. Do people see that?

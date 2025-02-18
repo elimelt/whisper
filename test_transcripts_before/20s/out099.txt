@@ -1,0 +1,1 @@
+ to operate on a particular datum. And then it's ignoring seven of the eight, seven of the eight floating point words on that, on that cash line, and going to the next one. So it's wasting an awful lot. So this one has good spatial locality, and that it's all adjacent, and you would use

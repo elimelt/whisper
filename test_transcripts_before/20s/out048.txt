@@ -1,0 +1,1 @@
+ Okay, so we got some jokers in the class I can say. Okay, so this is, you know, it takes N cubed operations because you're basically computing N squared dot products. Okay, so essentially.

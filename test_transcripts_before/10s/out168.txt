@@ -1,0 +1,1 @@
+ big software overhead you get with Python. Now JIT is somewhere in the middle, what's used in Java. JIT compilers can recover some of the performance. In fact, it did a pretty good job in this case.

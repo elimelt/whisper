@@ -1,0 +1,1 @@
+ fault ordering. And when you use that, so we're in particularly using architecture native and fast math, we actually get about double the performance out of vectorization, just having the compiler vectorize it. OK?

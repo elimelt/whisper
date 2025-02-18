@@ -1,0 +1,1 @@
+ going to look at is going to be one of the ones that you'll have access to in AWS. It's a compute optimized machine which has a Haswell micro architecture.

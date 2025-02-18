@@ -1,0 +1,1 @@
+ So then if programmers are so willing to sacrifice performance for these properties, why do we study performance? Okay, so this is kind of a bit of a paradox and a bit of a-

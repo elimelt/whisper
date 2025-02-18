@@ -1,0 +1,1 @@
+ far away in memory. So the processor is going to be bringing in 64 bytes to operate on a particular datum. And then it's ignoring 7 of the 8 floating point words on that cache line and going to the next one. So it's wasting an awful lot. So this one has good spatial locality and that it's all adjacent and you would use the

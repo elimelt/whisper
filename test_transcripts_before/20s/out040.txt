@@ -1,0 +1,1 @@
+ We got vector units as common parts of our machines. We got GPUs. We got steeper cache hierarchies. We have configurable logic on some machines and so forth. And now it's up to the software to adapt to it. And so although we don't want to have to deal with performance.

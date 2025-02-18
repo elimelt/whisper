@@ -1,0 +1,1 @@
+ performance. So typically the cycle for an interpreter is you read the next statement, you interpret the statement, you then perform the statement and then you update the state of the machine, and then you fetch the next instruction. Okay? And you're going through that each time, and that's done in software. Okay?

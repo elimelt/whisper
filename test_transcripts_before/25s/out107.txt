@@ -1,0 +1,1 @@
+ You could do that. You might get a number, but who knows what else is going on in the cache while you're doing this. Just a bunch of them. Yeah, test a bunch of them. Experiment. Okay? Try them. See which one gives you good numbers. And when you do that, it turns out that 32 gives you the best performance. Okay, for this particular problem. Okay? Okay.

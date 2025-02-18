@@ -1,0 +1,1 @@
+ They've got three levels of caches. There's L1 cache, and there's data and instructions. So we're thinking about data here for the data for the matrix. And it's got an L2 cache, which is also private to the processor. And then a shared L3 cache, and then you go out to the DRAM. You also can go to your neighboring processors and such.

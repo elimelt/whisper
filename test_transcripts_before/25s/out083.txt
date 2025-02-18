@@ -1,0 +1,1 @@
+ about six and a half. So what other simple changes can we try? There's actually a collection of things that we could do that don't even have us touching the code. What else could we do for people who've played with compilers and such? hint hint. Yeah. You can change the compiler flags. Yeah, change the compiler flags, okay? So clap.

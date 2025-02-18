@@ -1,0 +1,1 @@
+ low and hits or fast and try to make the most of the cast by reusing the data that's already there. So let's just take a look. Suppose that we're going to just compute one row of C. So we go through one row of C. That's going to take us since a 4,096 long.

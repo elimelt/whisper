@@ -1,0 +1,1 @@
+ They've got three levels of caches. There's L1 cache, and there's data and instructions. So we're thinking about data here.

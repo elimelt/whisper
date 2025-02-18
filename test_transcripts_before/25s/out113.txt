@@ -1,0 +1,1 @@
+ out for three levels of caching, how many levels of tiling do we have to do? This is a, this is a gimme, right? 12, good, 12, okay? Yeah, it's in 2, 12, okay. That really, and man, you know, when I say the code gets ugly when you start making things go fast, okay, right? This is like, uhh.

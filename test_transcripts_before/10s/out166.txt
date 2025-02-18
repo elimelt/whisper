@@ -1,0 +1,1 @@
+ And you have things compiled to machine code. It goes through a similar thing, but it's highly optimized just for the things that machines are done. And so.

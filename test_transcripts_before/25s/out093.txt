@@ -1,0 +1,1 @@
+ and we'll learn about scheduling overhead and how you predict that and such. So the rule of thumb here is paralyzed out or loops rather than inter loops. Okay? And so when we do parallel loops, we get an almost 18x speed up on 18 cores. Okay? So let me assure you not all code is that easy to paralyze. Okay? But this one happens to be. So now we're up to what about just

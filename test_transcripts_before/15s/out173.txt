@@ -1,0 +1,1 @@
+ If those blocks will fit in my cache. So I do much less to compute the same size footprint if I compute a block rather than computing a row. Much more efficient.

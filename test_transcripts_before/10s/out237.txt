@@ -1,0 +1,1 @@
+ vectorize the e. Yep, good. So that's one, and there's one other that we're not using very effectively. OK, that's one, and those are the two optimizations we're going to do.

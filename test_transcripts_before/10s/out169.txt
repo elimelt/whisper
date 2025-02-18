@@ -1,0 +1,1 @@
+ The idea is when the code is first interpreted, it's executed, it's interpreted. And then the runtime sees system keeps track of how often the various.

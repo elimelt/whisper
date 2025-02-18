@@ -1,0 +1,1 @@
+ giga flops. And we're getting 6.25 megaflops. So we're getting about 0.0075% of peak.

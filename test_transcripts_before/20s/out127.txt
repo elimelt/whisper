@@ -1,0 +1,1 @@
+ want to compute a 64 by 64 block of C rather than a row of C. So let's take a look at what happens there. So remember, by the way, this number, 16, 17 million, because we're going to compare with it. So what about a computer block? So if I look at a block, that is going to take me 64 by 64. Also, 10.
