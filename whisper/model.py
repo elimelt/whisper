@@ -250,6 +250,10 @@ class AudioEncoderTokenPruner:
         # self.visualize_cut_region(x, cr)
 
         cut_start, cut_end = cr
+
+        # DEBUG
+        print("cr: ", cr)
+        
         assert 0 <= cut_start < cut_end <= x.shape[1], "Cut region out of bounds!"
 
         # Keep only the uncut regions
