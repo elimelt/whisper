@@ -203,13 +203,11 @@ class AudioEncoderTokenPruner:
         self.cut_region = cut_region
         self.token_count_padding = token_count_padding
         self.min_amount_cut = min_amount_cut
-        self.pruned = False
 
     def prune(self, x: Tensor, positional_embedding: Tensor, token_count: int):
         # we can't prune
-        if ( token_count == -1 and self.cut_region is None ) or self.pruned:
+        if token_count == -1 and self.cut_region is None:
             return x
-        self.pruned = True
         # give manually specified cut_region precedence for debugging/testing
         if token_count != -1 and self.cut_region is None:
             token_count += self.token_count_padding
