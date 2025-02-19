@@ -230,7 +230,6 @@ class AudioEncoderTokenPruner:
 
     def prune(self, x: Tensor, positional_embedding: Tensor, token_count: int):
         # we can't prune
-        print("token cnt: ", token_count)
         if token_count == -1 and self.cut_region is None:
             return x
 
@@ -238,12 +237,10 @@ class AudioEncoderTokenPruner:
         # give manually specified cut_region precedence for debugging/testing
         if token_count != -1 and self.cut_region is None:
             token_count += self.token_count_padding
-            print("token cnt (after padding 50)", token_count)
             amount_cut = TOTAL_NUM_TOKENS - token_count - 200
-            print("amount_cut: ", amount_cut)
             # not worth it to cut anything
             if amount_cut < self.min_amount_cut:
-                print("cut nothing, min amount: ", self.min_amount_cut)
+                # TODO: find out why we can't just return x
                 cr = [0, 0]
             else:
                 cr = [token_count, TOTAL_NUM_TOKENS - 200]
@@ -255,9 +252,6 @@ class AudioEncoderTokenPruner:
         # self.visualize_cut_region(x, cr)
 
         cut_start, cut_end = cr
-
-        # DEBUG
-        print("cr: ", cr)
 
         assert 0 <= cut_start <= cut_end <= x.shape[1], "Cut region out of bounds!"
 
@@ -308,7 +302,7 @@ class AudioEncoder(nn.Module):
 
         assert x.shape[1:] == self.positional_embedding.shape, "incorrect audio shape"
 
-        if self.ext_feat_flag and token_count < (TOTAL_NUM_TOKENS - 200 - 1) and token_count > 0:
+        if self.ext_feat_flag and token_count < (TOTAL_NUM_TOKENS - 200 - 50) and token_count > 0:
             x = self.token_pruner.prune(x, self.positional_embedding, token_count )
         else:
             x = (x + self.positional_embedding).to(x.dtype)
