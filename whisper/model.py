@@ -259,7 +259,7 @@ class AudioEncoderTokenPruner:
         # DEBUG
         print("cr: ", cr)
 
-        assert 0 <= cut_start < cut_end <= x.shape[1], "Cut region out of bounds!"
+        assert 0 <= cut_start <= cut_end <= x.shape[1], "Cut region out of bounds!"
 
         # Keep only the uncut regions
         x_pruned = torch.cat((x[:, :cut_start, :], x[:, cut_end:, :]), dim=1)
