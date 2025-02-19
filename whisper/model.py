@@ -186,7 +186,7 @@ class AudioEncoderTokenPruner:
         self,
         cut_region: Optional[Tuple[int, int]] = None,
         token_count_padding: int = 50,
-        min_amount_cut: int = 100,
+        min_amount_cut: int = 400,
     ):
         """
         cut_region : used to manually specify the region to cut from the audio tokens. if
@@ -204,11 +204,36 @@ class AudioEncoderTokenPruner:
         self.token_count_padding = token_count_padding
         self.min_amount_cut = min_amount_cut
 
+    def visualize_cut_region(self, x: Tensor, cut_region: Tuple[int, int]):
+
+        print("Cutting audio tokens based on the following region:")
+        print(f"Cut region: {cut_region}")
+
+        if x.dim() > 2:
+            x = x.squeeze(0)
+
+        audio_feature_norms = torch.norm(x.detach(), dim=-1).cpu().numpy()
+        print(f"Audio feature norms shape: {audio_feature_norms.shape}")
+
+        sns.set_theme()
+        plt.figure(figsize=(10, 5))
+        plt.plot(audio_feature_norms)
+        plt.axvspan(cut_region[0], cut_region[1], color="red", alpha=0.5)
+        plt.xlabel("Time")
+        plt.ylabel("L2 Norm")
+        plt.title("L2 Norm of Feature Vectors")
+
+        plt.tight_layout()
+        figpath = f'test_figs/cut_region_vs_l2_norm/plot_{np.random.randint(0, 10**8)}.png'
+        plt.savefig(figpath)
+        print(f"Saved plot to {figpath}")
+
     def prune(self, x: Tensor, positional_embedding: Tensor, token_count: int):
         # we can't prune
         if token_count == -1 and self.cut_region is None:
             return x
 
+        cr = self.cut_region
         # give manually specified cut_region precedence for debugging/testing
         if token_count != -1 and self.cut_region is None:
             token_count += self.token_count_padding
@@ -216,12 +241,15 @@ class AudioEncoderTokenPruner:
             # not worth it to cut anything
             if amount_cut < self.min_amount_cut:
                 return x
-            self.cut_region = [token_count, TOTAL_NUM_TOKENS - 200]
+            cr = [token_count, TOTAL_NUM_TOKENS - 200]
 
             # audio_length = int((x.shape[1] + 1) // 2)
             # [0-950, -----, 1300-1500]
 
-        cut_start, cut_end = self.cut_region
+        # uncomment if you're down bad
+        self.visualize_cut_region(x, cr)
+
+        cut_start, cut_end = cr
         assert 0 <= cut_start < cut_end <= x.shape[1], "Cut region out of bounds!"
 
         # Keep only the uncut regions
