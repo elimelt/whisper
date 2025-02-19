@@ -238,10 +238,12 @@ class AudioEncoderTokenPruner:
         # give manually specified cut_region precedence for debugging/testing
         if token_count != -1 and self.cut_region is None:
             token_count += self.token_count_padding
+            print("token cnt (after padding 50)", token_count)
             amount_cut = TOTAL_NUM_TOKENS - token_count - 200
+            print("amount_cut: ", amount_cut)
             # not worth it to cut anything
             if amount_cut < self.min_amount_cut:
-                print("cut nothing")
+                print("cut nothing, min amount: ", self.min_amount_cut)
                 return x
             cr = [token_count, TOTAL_NUM_TOKENS - 200]
 
