@@ -267,8 +267,6 @@ class AudioEncoderTokenPruner:
         # Add positional embeddings back
         x_pruned = (x_pruned + pos_emb_pruned).to(x.dtype)
         
-        print('token count: ', token_count)
-        print('cut region: ', self.cut_region)
         return x_pruned
 
 
