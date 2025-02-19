@@ -230,6 +230,7 @@ class AudioEncoderTokenPruner:
 
     def prune(self, x: Tensor, positional_embedding: Tensor, token_count: int):
         # we can't prune
+        print("token cnt: ", token_count)
         if token_count == -1 and self.cut_region is None:
             return x
 
@@ -240,6 +241,7 @@ class AudioEncoderTokenPruner:
             amount_cut = TOTAL_NUM_TOKENS - token_count - 200
             # not worth it to cut anything
             if amount_cut < self.min_amount_cut:
+                print("cut nothing")
                 return x
             cr = [token_count, TOTAL_NUM_TOKENS - 200]
 
@@ -253,7 +255,7 @@ class AudioEncoderTokenPruner:
 
         # DEBUG
         print("cr: ", cr)
-        
+
         assert 0 <= cut_start < cut_end <= x.shape[1], "Cut region out of bounds!"
 
         # Keep only the uncut regions
