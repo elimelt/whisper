@@ -295,6 +295,7 @@ def transcribe(
             mel_segment = pad_or_trim(mel_segment, N_FRAMES).to(model.device).to(dtype)
 
             segment_token_count = segment_size // (N_FRAMES // model.dims.n_audio_ctx)
+            print('token count for curr segment: ', segment_token_count )
 
             if (verbose):
                 print(f"Processing chunk: Start={seek / FRAMES_PER_SECOND:.2f}s, "
