@@ -294,13 +294,20 @@ def transcribe(
             segment_duration = segment_size * HOP_LENGTH / SAMPLE_RATE
             mel_segment = pad_or_trim(mel_segment, N_FRAMES).to(model.device).to(dtype)
 
+            segment_token_count = segment_size // (N_FRAMES // model.dims.n_audio_ctx)
+
+            if (verbose):
+                print(f"Processing chunk: Start={seek / FRAMES_PER_SECOND:.2f}s, "
+                  f"End={(seek + N_FRAMES) / FRAMES_PER_SECOND:.2f}s")
+                print(f"Segment token count: {segment_token_count}")
+
             if carry_initial_prompt:
                 nignored = max(len(initial_prompt_tokens), prompt_reset_since)
                 remaining_prompt = all_tokens[nignored:][-remaining_prompt_length:]
                 decode_options["prompt"] = initial_prompt_tokens + remaining_prompt
             else:
                 decode_options["prompt"] = all_tokens[prompt_reset_since:]
-            result: DecodingResult = decode_with_fallback(mel_segment)
+            result: DecodingResult = decode_with_fallback(mel_segment, token_count=segment_token_count)
             tokens = torch.tensor(result.tokens)
 
             if no_speech_threshold is not None:

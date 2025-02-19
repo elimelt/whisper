@@ -220,8 +220,7 @@ class AudioEncoderTokenPruner:
 
             # audio_length = int((x.shape[1] + 1) // 2)
             # [0-950, -----, 1300-1500]
-        print("num tokens: ", token_count)
-        print("new cut region: ", self.cut_region)
+
         cut_start, cut_end = self.cut_region
         assert 0 <= cut_start < cut_end <= x.shape[1], "Cut region out of bounds!"
 
