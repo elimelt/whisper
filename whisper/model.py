@@ -244,8 +244,9 @@ class AudioEncoderTokenPruner:
             # not worth it to cut anything
             if amount_cut < self.min_amount_cut:
                 print("cut nothing, min amount: ", self.min_amount_cut)
-                return x
-            cr = [token_count, TOTAL_NUM_TOKENS - 200]
+                cr = [0, 0]
+            else:
+                cr = [token_count, TOTAL_NUM_TOKENS - 200]
 
             # audio_length = int((x.shape[1] + 1) // 2)
             # [0-950, -----, 1300-1500]
