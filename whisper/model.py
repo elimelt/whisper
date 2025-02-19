@@ -217,7 +217,7 @@ class AudioEncoderTokenPruner:
             if amount_cut < self.min_amount_cut:
                 return x
             self.cut_region = [token_count, TOTAL_NUM_TOKENS - 200]
-
+        
             # audio_length = int((x.shape[1] + 1) // 2)
             # [0-950, -----, 1300-1500]
 
@@ -238,7 +238,8 @@ class AudioEncoderTokenPruner:
 
         # Add positional embeddings back
         x_pruned = (x_pruned + pos_emb_pruned).to(x.dtype)
-
+        print('token count: ', token_count)
+        print('cut region: ', self.cut_region)
         return x_pruned
 
 
