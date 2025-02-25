@@ -186,7 +186,7 @@ class AudioEncoderTokenPruner:
         self,
         cut_region: Optional[Tuple[int, int]] = None,
         token_count_padding: int = 50,
-        min_amount_cut: int = 400,
+        min_amount_cut: int = 100,
     ):
         """
         cut_region : used to manually specify the region to cut from the audio tokens. if
@@ -237,11 +237,13 @@ class AudioEncoderTokenPruner:
         # give manually specified cut_region precedence for debugging/testing
         if token_count != -1 and self.cut_region is None:
             token_count += self.token_count_padding
-            amount_cut = TOTAL_NUM_TOKENS - token_count - 200
+            amount_cut = TOTAL_NUM_TOKENS - token_count - 100 # won't cut less than 100 tokens
             # not worth it to cut anything
             if amount_cut < self.min_amount_cut:
-                return x
-            cr = [token_count, TOTAL_NUM_TOKENS - 200]
+                # TODO: find out why we can't just return x
+                cr = [0, 0]
+            else:
+                cr = [token_count, TOTAL_NUM_TOKENS - 100]
 
             # audio_length = int((x.shape[1] + 1) // 2)
             # [0-950, -----, 1300-1500]
@@ -250,7 +252,8 @@ class AudioEncoderTokenPruner:
         # self.visualize_cut_region(x, cr)
 
         cut_start, cut_end = cr
-        assert 0 <= cut_start < cut_end <= x.shape[1], "Cut region out of bounds!"
+
+        assert 0 <= cut_start <= cut_end <= x.shape[1], "Cut region out of bounds!"
 
         # Keep only the uncut regions
         x_pruned = torch.cat((x[:, :cut_start, :], x[:, cut_end:, :]), dim=1)
@@ -287,6 +290,7 @@ class AudioEncoder(nn.Module):
         self.ext_feat_flag = ext_feat_flag
         if ext_feat_flag:
             self.token_pruner = AudioEncoderTokenPruner(cut_region=cut_region)
+        self.token_count = -1
 
     def forward(self, x: Tensor, token_count: int):
         """
@@ -296,10 +300,14 @@ class AudioEncoder(nn.Module):
         x = F.gelu(self.conv1(x))
         x = F.gelu(self.conv2(x))
         x = x.permute(0, 2, 1)
+        
+        self.token_count = token_count
 
         assert x.shape[1:] == self.positional_embedding.shape, "incorrect audio shape"
 
-        if self.ext_feat_flag and token_count < (TOTAL_NUM_TOKENS - 200 - 1) and token_count > 0:
+        if self.ext_feat_flag and (TOTAL_NUM_TOKENS - 50 - token_count) >= 100 and token_count > 0:
+            print('token count is: ', token_count)
+            print('num tokens to be cut: ', TOTAL_NUM_TOKENS - 50 - token_count)
             x = self.token_pruner.prune(x, self.positional_embedding, token_count )
         else:
             x = (x + self.positional_embedding).to(x.dtype)
