@@ -247,7 +247,7 @@ class AudioEncoderTokenPruner:
             padding_tokens = TOTAL_NUM_TOKENS - token_count
             padding_to_keep = round( .2 * padding_tokens )
             cr = [ token_count + padding_to_keep, TOTAL_NUM_TOKENS - padding_to_keep ]
-
+            print('cut region: ', cr )
             # audio_length = int((x.shape[1] + 1) // 2)
             # [0-950, -----, 1300-1500]
 
@@ -310,7 +310,7 @@ class AudioEncoder(nn.Module):
 
         if self.ext_feat_flag and (TOTAL_NUM_TOKENS - 50 - token_count) >= 100 and token_count > 0:
             print('token count is: ', token_count)
-            print('num tokens to be cut: ', TOTAL_NUM_TOKENS - 50 - token_count)
+            # print('num tokens to be cut: ', TOTAL_NUM_TOKENS - 50 - token_count)
             x = self.token_pruner.prune(x, self.positional_embedding, token_count )
         else:
             x = (x + self.positional_embedding).to(x.dtype)
