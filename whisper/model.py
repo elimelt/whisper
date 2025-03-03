@@ -245,9 +245,9 @@ class AudioEncoderTokenPruner:
             # else:
             #     cr = [token_count, TOTAL_NUM_TOKENS - 100]
             padding_tokens = TOTAL_NUM_TOKENS - token_count
-            padding_to_keep = round( .2 * padding_tokens )
+            padding_to_keep = round( .1 * padding_tokens )
             cr = [ token_count + padding_to_keep, TOTAL_NUM_TOKENS - padding_to_keep ]
-            print('cut region: ', cr )
+            
             # audio_length = int((x.shape[1] + 1) // 2)
             # [0-950, -----, 1300-1500]
 
