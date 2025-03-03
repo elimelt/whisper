@@ -236,14 +236,17 @@ class AudioEncoderTokenPruner:
         cr = self.cut_region
         # give manually specified cut_region precedence for debugging/testing
         if token_count != -1 and self.cut_region is None:
-            token_count += self.token_count_padding
-            amount_cut = TOTAL_NUM_TOKENS - token_count - 100 # won't cut less than 100 tokens
-            # not worth it to cut anything
-            if amount_cut < self.min_amount_cut:
-                # TODO: find out why we can't just return x
-                cr = [0, 0]
-            else:
-                cr = [token_count, TOTAL_NUM_TOKENS - 100]
+            # token_count += self.token_count_padding
+            # amount_cut = TOTAL_NUM_TOKENS - token_count - 100 # won't cut less than 100 tokens
+            # # not worth it to cut anything
+            # if amount_cut < self.min_amount_cut:
+            #     # TODO: find out why we can't just return x
+            #     cr = [0, 0]
+            # else:
+            #     cr = [token_count, TOTAL_NUM_TOKENS - 100]
+            padding_tokens = TOTAL_NUM_TOKENS - token_count
+            padding_to_keep = round( .2 * padding_tokens )
+            cr = [ token_count + padding_to_keep, TOTAL_NUM_TOKENS - padding_to_keep ]
 
             # audio_length = int((x.shape[1] + 1) // 2)
             # [0-950, -----, 1300-1500]
