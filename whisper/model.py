@@ -293,6 +293,7 @@ class AudioEncoder(nn.Module):
         self.ext_feat_flag = ext_feat_flag
         if ext_feat_flag:
             self.token_pruner = AudioEncoderTokenPruner(cut_region=cut_region)
+        self.token_count = -1
 
     def forward(self, x: Tensor, token_count: int):
         """
@@ -302,6 +303,8 @@ class AudioEncoder(nn.Module):
         x = F.gelu(self.conv1(x))
         x = F.gelu(self.conv2(x))
         x = x.permute(0, 2, 1)
+        
+        self.token_count = token_count
 
         assert x.shape[1:] == self.positional_embedding.shape, "incorrect audio shape"
 
