@@ -107,6 +107,7 @@ def load_model(
     in_memory: bool = False,
     ext_feature_flag: bool = False,
     cut_region: Optional[tuple] = None,
+    percent_pruned: Optional[float] = None
 ) -> Whisper:
     """
     Load a Whisper ASR model
@@ -153,7 +154,7 @@ def load_model(
     del checkpoint_file
 
     dims = ModelDimensions(**checkpoint["dims"])
-    model = Whisper(dims, ext_feat_flag=ext_feature_flag, cut_region=cut_region)
+    model = Whisper(dims, ext_feat_flag=ext_feature_flag, cut_region=cut_region, percent_pruned=percent_pruned)
     model.load_state_dict(checkpoint["model_state_dict"])
 
     if alignment_heads is not None:

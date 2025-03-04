@@ -4,8 +4,8 @@ from typing import Tuple
 import matplotlib.pyplot as plt
 import subprocess
 
-def load_model(model_name: str = "tiny.en", ff: bool = False, cut_region=None) -> whisper.Whisper:
-    return whisper.load_model(model_name, ext_feature_flag=ff, cut_region=cut_region)
+def load_model(model_name: str = "tiny.en", ff: bool = False, cut_region=None, percent_pruned=None) -> whisper.Whisper:
+    return whisper.load_model(model_name, ext_feature_flag=ff, cut_region=cut_region, percent_pruned=None)
 
 
 def transcribe(model: whisper.Whisper, audio_path: str) -> Tuple[str, float]:
