@@ -10,7 +10,7 @@ def load_model(model_name: str = "tiny.en", ff: bool = False, cut_region=None) -
 
 def transcribe(model: whisper.Whisper, audio_path: str) -> Tuple[str, float]:
     start_time = timeit.default_timer()
-    transcription = model.transcribe(audio_path)
+    transcription = model.transcribe(audio_path, verbose=False)
     transcription = transcription.get("text", "")
     elapsed_time = timeit.default_timer() - start_time
     return transcription, elapsed_time
