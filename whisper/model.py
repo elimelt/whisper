@@ -245,7 +245,7 @@ class AudioEncoderTokenPruner:
             # else:
             #     cr = [token_count, TOTAL_NUM_TOKENS - 100]
             padding_tokens = TOTAL_NUM_TOKENS - token_count
-            padding_to_keep = round( .3 * padding_tokens )
+            padding_to_keep = round( .2 * padding_tokens )
             cr = [ token_count + padding_to_keep, TOTAL_NUM_TOKENS - padding_to_keep ]
             
             # audio_length = int((x.shape[1] + 1) // 2)
