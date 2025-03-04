@@ -245,7 +245,7 @@ class AudioEncoderTokenPruner:
             # else:
             #     cr = [token_count, TOTAL_NUM_TOKENS - 100]
             padding_tokens = TOTAL_NUM_TOKENS - token_count
-            padding_to_keep = round( .1 * padding_tokens )
+            padding_to_keep = round( .3 * padding_tokens )
             cr = [ token_count + padding_to_keep, TOTAL_NUM_TOKENS - padding_to_keep ]
             
             # audio_length = int((x.shape[1] + 1) // 2)
@@ -309,7 +309,7 @@ class AudioEncoder(nn.Module):
         assert x.shape[1:] == self.positional_embedding.shape, "incorrect audio shape"
 
         if self.ext_feat_flag and (TOTAL_NUM_TOKENS - 50 - token_count) >= 100 and token_count > 0:
-            print('token count is: ', token_count)
+            # print('token count is: ', token_count)
             # print('num tokens to be cut: ', TOTAL_NUM_TOKENS - 50 - token_count)
             x = self.token_pruner.prune(x, self.positional_embedding, token_count )
         else:
