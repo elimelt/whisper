@@ -10,3 +10,6 @@ thumbs.db
 .idea
 
 test_data/
+
+ami_data/
+earnings_data/
