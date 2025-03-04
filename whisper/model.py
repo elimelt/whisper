@@ -187,6 +187,7 @@ class AudioEncoderTokenPruner:
         cut_region: Optional[Tuple[int, int]] = None,
         token_count_padding: int = 50,
         min_amount_cut: int = 100,
+        percent_pruned: Optional[float] = None
     ):
         """
         cut_region : used to manually specify the region to cut from the audio tokens. if
@@ -203,6 +204,7 @@ class AudioEncoderTokenPruner:
         self.cut_region = cut_region
         self.token_count_padding = token_count_padding
         self.min_amount_cut = min_amount_cut
+        self.percent_pruned = percent_pruned
 
     def visualize_cut_region(self, x: Tensor, cut_region: Tuple[int, int]):
 
@@ -235,18 +237,22 @@ class AudioEncoderTokenPruner:
 
         cr = self.cut_region
         # give manually specified cut_region precedence for debugging/testing
-        if token_count != -1 and self.cut_region is None:
-            # token_count += self.token_count_padding
-            # amount_cut = TOTAL_NUM_TOKENS - token_count - 100 # won't cut less than 100 tokens
-            # # not worth it to cut anything
-            # if amount_cut < self.min_amount_cut:
-            #     # TODO: find out why we can't just return x
-            #     cr = [0, 0]
-            # else:
-            #     cr = [token_count, TOTAL_NUM_TOKENS - 100]
+        if token_count != -1 and self.cut_region is None and self.percent_pruned is None:
+            token_count += self.token_count_padding
+            amount_cut = TOTAL_NUM_TOKENS - token_count - 200 
+            # not worth it to cut anything
+            if amount_cut < self.min_amount_cut:
+                # TODO: find out why we can't just return x
+                cr = [0, 0]
+            else:
+                cr = [token_count, TOTAL_NUM_TOKENS - 200] # keep last 200
+            print('static pruning, cut region: ', cr)
+        elif token_count != -1 and self.cut_region is None:
             padding_tokens = TOTAL_NUM_TOKENS - token_count
-            padding_to_keep = round( .2 * padding_tokens )
+            padding_to_keep = round( self.percent_pruned * padding_tokens )
             cr = [ token_count + padding_to_keep, TOTAL_NUM_TOKENS - padding_to_keep ]
+            print('pruning by percent, cut region: ', cr)
+        
             
             # audio_length = int((x.shape[1] + 1) // 2)
             # [0-950, -----, 1300-1500]
@@ -278,7 +284,7 @@ class AudioEncoderTokenPruner:
 
 class AudioEncoder(nn.Module):
     def __init__(
-        self, n_mels: int, n_ctx: int, n_state: int, n_head: int, n_layer: int, ext_feat_flag: bool = False, cut_region: Optional[Tuple[int, int]]=None
+        self, n_mels: int, n_ctx: int, n_state: int, n_head: int, n_layer: int, ext_feat_flag: bool = False, cut_region: Optional[Tuple[int, int]]=None, percent_pruned: Optional[float] = None
     ):
         super().__init__()
         self.conv1 = Conv1d(n_mels, n_state, kernel_size=3, padding=1)
@@ -368,7 +374,7 @@ class TextDecoder(nn.Module):
 
 
 class Whisper(nn.Module):
-    def __init__(self, dims: ModelDimensions, ext_feat_flag: bool = False, cut_region: Tuple[int, int]=None):
+    def __init__(self, dims: ModelDimensions, ext_feat_flag: bool = False, cut_region: Tuple[int, int]=None, percent_pruned: float = None):
         super().__init__()
         self.dims = dims
         self.encoder = AudioEncoder(
@@ -379,6 +385,7 @@ class Whisper(nn.Module):
             self.dims.n_audio_layer,
             ext_feat_flag=ext_feat_flag,
             cut_region=cut_region,
+            percent_pruned=percent_pruned
         )
         self.decoder = TextDecoder(
             self.dims.n_vocab,
@@ -396,6 +403,7 @@ class Whisper(nn.Module):
         self.register_buffer("alignment_heads", all_heads.to_sparse(), persistent=False)
         self.ext_feat_flag = ext_feat_flag
         self.cut_region = cut_region
+        self.percent_pruned = percent_pruned
 
     def set_alignment_heads(self, dump: bytes):
         array = np.frombuffer(
