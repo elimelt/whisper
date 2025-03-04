@@ -245,14 +245,11 @@ class AudioEncoderTokenPruner:
                 # TODO: find out why we can't just return x
                 cr = [0, 0]
             else:
-                cr = [token_count, TOTAL_NUM_TOKENS - 200] # keep last 200
-            print('static pruning, cut region: ', cr)
-        elif token_count != -1 and self.cut_region is None:
+                cr = [token_count, TOTAL_NUM_TOKENS - 200] # keep last 200        
+        elif token_count != -1 and self.cut_region is None and self.percent_pruned is not None:
             padding_tokens = TOTAL_NUM_TOKENS - token_count
             padding_to_keep = round( self.percent_pruned * padding_tokens )
-            cr = [ token_count + padding_to_keep, TOTAL_NUM_TOKENS - padding_to_keep ]
-            print('pruning by percent, cut region: ', cr)
-        
+            cr = [ token_count + padding_to_keep, TOTAL_NUM_TOKENS - padding_to_keep ]        
             
             # audio_length = int((x.shape[1] + 1) // 2)
             # [0-950, -----, 1300-1500]
@@ -298,7 +295,7 @@ class AudioEncoder(nn.Module):
         self.ln_post = LayerNorm(n_state)
         self.ext_feat_flag = ext_feat_flag
         if ext_feat_flag:
-            self.token_pruner = AudioEncoderTokenPruner(cut_region=cut_region)
+            self.token_pruner = AudioEncoderTokenPruner(cut_region=cut_region, percent_pruned=percent_pruned)
         self.token_count = -1
 
     def forward(self, x: Tensor, token_count: int):
